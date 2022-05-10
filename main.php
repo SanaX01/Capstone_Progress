@@ -68,11 +68,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
+                            
                         }
                     }
                 } else{
                     // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
+                    
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -91,7 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
    $sql = "SELECT * FROM bookdeets";
    $result = mysqli_query($conn, $sql) or die("bad query: $sql");
-   echo $username;
 ?>
  
 <!DOCTYPE html>
@@ -174,7 +175,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <?php 
         if(!empty($login_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            echo '<div class="alert alert-danger" style="font-size: 20px;">' . $login_err . '</div>';
         }   
         ?>
 
@@ -186,7 +187,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>    
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" class="box <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <input type="password" name="password" class="box <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
