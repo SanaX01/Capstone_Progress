@@ -32,7 +32,7 @@ if(isset($_GET['id'])){
         <div class="icon">
           <a href="main.php"><i class="fa fa-arrow-left"></i></a>
         </div>
-        <h3>New products</h3>
+        <h3><?php echo $row['genre'] ?></h3>
       </div>
       <div class="card__body">
         <div class="half">
@@ -64,8 +64,8 @@ if(isset($_GET['id'])){
       </div>
       <div class="card__footer">
         <div class="recommend">
-          <p>Recommended by</p>
-          <h3>Andrew Palmer</h3>
+          <p>Author</p>
+          <h3><?php echo $row['author'] ?></h3>
         </div>
         <div class="action">
           <button type="button">Add to cart</button>

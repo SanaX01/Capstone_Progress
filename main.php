@@ -89,8 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($conn);
 }
-    require('configbooks.php');
-
+    
    $sql = "SELECT * FROM bookdeets";
    $result = mysqli_query($conn, $sql) or die("bad query: $sql");
 ?>
@@ -216,7 +215,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           <div class="swiper-wrapper">
               <?php if(mysqli_num_rows($result)> 0){
            while($rows = mysqli_fetch_array($result)){
-               echo "<a class='swiper-slide' href='DisplayBooks.php?id={$rows['book_id']}'>{$rows['title']}<br>\n";
+               echo "<a class='swiper-slide' href='DisplayBooks.php?id={$rows['book_id']}'><br>\n";
                
                echo "<img src='Books/{$rows['bookimg_dir']}'>";
            }
@@ -225,7 +224,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }?>
               
           </div>
-          <img src="image/stand.png" class="stand" alt="">
+          
       </div>
 
   </div>
