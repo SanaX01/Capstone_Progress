@@ -1,32 +1,34 @@
 <?php
         
-require_once('configbooks.php');
+require_once('config.php');
 session_start();
 //$bookid = '';
 
 if(isset($_GET['id'])){
     $ID = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "SELECT * FROM bookdeets WHERE book_id=$ID";
-    $result = mysqli_query($conn, $sql) or die('Bad query: $sql');
+    $result = mysqli_query($conn, $sql) or die('Bad query:' .$sql);
     $row = mysqli_fetch_array($result);
 }
 
 ?>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style1.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-</head>
-<body>
-   
-   
-   <h2></h2>
 
-   <main>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="style1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+
+
+  <h2></h2>
+
+  <main>
     <div class="card">
       <div class="card__title">
         <div class="icon">
@@ -37,12 +39,12 @@ if(isset($_GET['id'])){
       <div class="card__body">
         <div class="half">
           <div class="featured_text">
-          <h1><?php echo $row['title'] ?></h1>
+            <h1><?php echo $row['title'] ?></h1>
             <p class="sub"> </p>
             <p class="price">₱210.00</p>
           </div>
           <div class="image">
-          <img src='Books/<?php echo $row['bookimg_dir'] ?>'>
+            <img src='Books/<?php echo $row['bookimg_dir'] ?>'>
           </div>
         </div>
         <div class="half">
@@ -74,4 +76,5 @@ if(isset($_GET['id'])){
     </div>
   </main>
 </body>
+
 </html>
