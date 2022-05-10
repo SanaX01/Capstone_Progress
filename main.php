@@ -227,10 +227,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="swiper-wrapper">
                     <?php if(mysqli_num_rows($result)> 0){
            while($rows = mysqli_fetch_array($result)){
-               echo "<a class='swiper-slide' href='DisplayBooks.php?id={$rows['book_id']}'><br>\n";
-               
-               echo "<img src='Books/{$rows['bookimg_dir']}'></a>";
-               
+               echo "<a class='swiper-slide' href='DisplayBooks.php?id={$rows['book_id']}'><br>\n <img src='Books/{$rows['bookimg_dir']}'></a>";
            }
        } else {
         echo "<h2> No data to display</h2>";
