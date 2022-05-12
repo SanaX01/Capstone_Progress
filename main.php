@@ -1,15 +1,12 @@
 <?php
 // Initialize the session
-session_start();
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
+
  
 // Include config file
 require_once "config.php";
+$sqlbook = "SELECT * FROM bookdeets";
+$result = mysqli_query($conn, $sqlbook) or die("bad query: $sqlbook");
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -63,6 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
+                            
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
@@ -89,9 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($conn);
 }
-    
-   $sql = "SELECT * FROM bookdeets";
-   $result = mysqli_query($conn, $sql) or die("bad query: $sql");
+   
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <!-- Navbar Links -->
                 <ul id="menu">
+                
                     <li><a href="#home">Home</a></li>
                     <!--
    -->
@@ -133,6 +130,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <li><a href="#about">About</a></li>
                     <!--
    -->
+                    <li><a href="#contact">Contact</a></li>
+                    
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -148,6 +147,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         </div>
         <div class="overlay-menu">
+            
             <ul id="menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -158,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
     </header>
     <!-- header section ends -->
-
+    
     <!-- bottom navbar  -->
 
     <nav class="bottom-navbar">
@@ -171,10 +171,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- login form  -->
 
-    <div class="login-form-container">
+    <div class="login-form-container" id="loginbtn">
 
         <div id="close-login-btn" class="fas fa-times"></div>
-
+        
         <div class="wrapper">
             <h2>Login</h2>
             <p>Please fill in your credentials to login.</p>
@@ -207,7 +207,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             </form>
         </div>
-
+            
     </div>
 
     <!-- home section starts  -->
@@ -243,7 +243,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- home section ense  -->
 
-    <!-- icons section starts  -->
+    <!-- icons section starts  --><button onclick="myFunction()">HIDE</button>
 
     <section class="icons-container">
 
@@ -933,6 +933,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     <script type="text/javascript" src="mainAnimation.js"></script>
+    <script type="text/JavaScript">
+  
+// Function is called, return 
+
+function myFunction() {
+    var x = document.getElementById("loginbtn");   
+    if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }         
+}
+</script>
 </body>
 
 </html>
