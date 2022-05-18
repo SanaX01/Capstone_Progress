@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
  
-
+session_start();
  
 // Include config file
 require_once "config.php";
@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
-                            session_start();
+                           
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: main.php");
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
@@ -103,7 +103,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <link rel="stylesheet" href="css/mainStyle.css">
 
 <head>
+<script type="text/JavaScript">
+  
+// Function is called, return 
 
+function jsFunction(){
+    var element = document.getElementById("login-btn");
+  element.classList.remove("fas", "fa-user");
+}
+</script>
 </head>
 
 <body>
@@ -131,8 +139,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <!--
    -->
                     <li><a href="#contact">Contact</a></li>
-                    
-                    <li><a href="#contact">Contact</a></li>
+                    <?php 
+                            if(isset($_SESSION['username'])){
+                                
+                                echo "<li><a href=''>{$_SESSION['username']} </a></li>";
+                            } 
+                        ?>
                 </ul>
             </div>
             <div class="menuIcon2">
@@ -141,7 +153,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="menuIcon">
                 <div class="icons">
-                    <div id="login-btn" class="fas fa-user"></div>
+                    <!-- fas fa-user -->
+                    <div id="login-btn" class="fas fa-user">
+                        
+                        <?php 
+                            if(isset($_SESSION['username'])){
+                               echo "<script type='text/javascript'>jsFunction();</script>";
+                            } else {
+                                
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
 
@@ -243,7 +265,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- home section ense  -->
 
-    <!-- icons section starts  --><button onclick="myFunction()">HIDE</button>
+    <!-- icons section starts  -->
 
     <section class="icons-container">
 
@@ -933,19 +955,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     <script type="text/javascript" src="mainAnimation.js"></script>
-    <script type="text/JavaScript">
-  
-// Function is called, return 
-
-function myFunction() {
-    var x = document.getElementById("loginbtn");   
-    if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }         
-}
-</script>
+    
 </body>
 
 </html>
